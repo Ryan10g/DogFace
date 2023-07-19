@@ -2,7 +2,7 @@ Dog Emotions Detector
 
 My project is an attempt to have the ResNet-18 AI model to be able to recognize a dog's feelings. It is able to take a picture of a dog and return an emotion from angry, happy, relaxed and sad.
  
-![add image descrition here](direct image link here)
+![add image descrition here]([direct image link here](https://imgur.com/a/YpBmX81))
 
 ## The Algorithm
 
@@ -20,8 +20,10 @@ In short, this project is a model that can recognize dog's emotions through a pi
 2. On the nano, you need to download jetson-inference, including all it's image recognition software. You also want to have all the directories like python and training ready to go.
 3. You also need to link the Nano to VSCode, where you can view photos. Also, the directories are easily readable from the contents bar on the left in VSCode.
 4. Then, you want to go to Kaggle and download the dataset for dog emotions. The link is here: https://www.kaggle.com/datasets/devzohaib/dog-emotions-prediction. Download all the pictures and import it on to the nano, whether through a usb or through wget in the linux interface.
-5. All the dog photos will come in 4 folders: angry, happy, relaxed, and sad. You should delete or add enough photos so that each emotion has the same amount of data to make the model a bit more accurate. 
-6. Make sure to include any required libraries that need to be installed for your project to run
+5. All the dog photos will come in 4 folders: angry, happy, relaxed, and sad. You should delete or add enough photos so that each emotion has the same amount of data to make the model a bit more accurate.
+6. Sort all the images into 3 main categories with sub-categories of angry, happy, relaxed, and sad. These three categories are train, val, and test, meaning training data, validation data, and testing data. The training data should have the most photos, then the validation data, and the testing data should be the least, as it is simply to test the complete model. Also, each sub-category within a main category should have the same amount of photos.
 7. 
+8. Make sure to include any required libraries that need to be installed for your project to run
+9. 
 
 [View a video explanation here](video link)
