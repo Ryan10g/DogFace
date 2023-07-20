@@ -2,11 +2,9 @@ Dog Emotions Detector
 
 My project is an attempt to have the ResNet-18 AI model to be able to recognize a dog's feelings. It is able to take a picture of a dog and return an emotion from angry, happy, relaxed and sad.
  
-![add image descrition here]([direct image link here](https://imgur.com/a/YpBmX81))
+https://imgur.com/a/YpBmX81
 
 ## The Algorithm
-
-Add an explanation of the algorithm and how it works. Make sure to include details about how the code works, what it depends on, and any other relevant info. Add images or other descriptions for your project here. 
 
 This project uses the ResNet-18 AI model, which is a convolutional neural network that is trained on more than a million images in the ImageNet database. This model is an image detecting software, so it can also be re-trained with a separate database for a different output. I've re-trained this software to recognize the emotion of a dog after looking at an image. However, because emotion is complicated, and my data isn't that accurate, the results are also not as accurate. 
 
@@ -22,8 +20,26 @@ In short, this project is a model that can recognize dog's emotions through a pi
 4. Then, you want to go to Kaggle and download the dataset for dog emotions. The link is here: https://www.kaggle.com/datasets/devzohaib/dog-emotions-prediction. Download all the pictures and import it on to the nano, whether through a usb or through wget in the linux interface.
 5. All the dog photos will come in 4 folders: angry, happy, relaxed, and sad. You should delete or add enough photos so that each emotion has the same amount of data to make the model a bit more accurate.
 6. Sort all the images into 3 main categories with sub-categories of angry, happy, relaxed, and sad. These three categories are train, val, and test, meaning training data, validation data, and testing data. The training data should have the most photos, then the validation data, and the testing data should be the least, as it is simply to test the complete model. Also, each sub-category within a main category should have the same amount of photos.
-7. 
-8. Make sure to include any required libraries that need to be installed for your project to run
-9. 
+7. Put the directory with all the data into jetson-inference/python/training/classification/data and name it whatever you want, like dog_emotions.
+8. Also, you need to make a label.txt in the same directory, and the text file needs to write anger, happy, relaxed, sad all on separate lines.
+9. Then, go to the docker container
+10. Run the command: python3 train.py --model-dir=models/cat_dog data/dog_emotions     The models/cat_dog is the ResNet18 model, and the data/dog_emotions is your dataset that you will run through AI with. Remember, you can add --epochs # with any number to specify how many epochs you want to run. I specifically ran 50 because I don't have a lot of time to run much more. The more epochs, the more accurate, but 100 is around the point where it doesn't get better with more epochs.
+11. After you finish training your model, which takes a long time, make a directory in dog_emotions called test_output.
+12. Make a directory in jetson-inference/python/training/classification/models called dog_emotions
+13. Run this command to export the model, make sure you're in jetson-inference/python/training/classification: python3 onnx_export.py --model-dir=models/dog_emotions
+14. Exit the docker container with ctrl+D
+15. Make sure you're in jetson-inference/python/training/classification
+16. Check that the model is in dog_emotions with ls model/dog_emotions
+17. Then, set variables $NET and $DATASET with:
+NET=models/dog_emotions
+DATASET=data/dog_emotions
+18. Use the following command to test the model on all angry pictures.
+  imagenet --model=$NET/resnet18.onnx --input_blob=input_0 --output_blob=output_0 --labels=$DATASET/../labels.txt \
+           $DATASET/test/angry $DATASET/test_output/angry_output
+19. Do the same command with happy, relaxed, and sad test pictures by changing the last line to $DATASET/test/Emotion here $DATASET/test_output/Emotion here_output
+20. Once you are done with all 4 emotions, you can log on to VSCode and open up the images in test_output to see the model's prediction on the dog's emotions. The percetage is its confidence level on its prediction. When predicting, the model uses Class #0, 1, 2, 3. 0 is angry, 1 is happy, 2 is relaxed, 3 is sad.
+21. Lastly, you can take any image link and use wget to download it on to your nano. Then you can run the same code on the downloaded image by simply changing the place where you get the image and output in the last line.
+
+ENJOY!
 
 [View a video explanation here](video link)
