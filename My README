@@ -1,6 +1,6 @@
 Dog Emotions Detector
 
-My project is an attempt to have the ResNet-18 AI model to be able to recognize a dog's feelings. It is able to take a picture of a dog and return an emotion from angry, happy, relaxed and sad.
+My project is an attempt to have the ResNet-18 AI model to be able to recognize a dog's feelings. It is able to take a picture of a dog and return an emotion from angry, happy, relaxed and sad. This AI model is useful for situations when you would like a computer to make judgements based on what a dog is feeling. For example, if you want to have a robot feed the dog everytime it gets anxious when you're gone, you can use the model to detect it.
  
 https://imgur.com/a/YpBmX81
 
